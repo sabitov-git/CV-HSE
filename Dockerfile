@@ -7,6 +7,6 @@ RUN apt-get update -y && \
     texlive-full \
     texlive-latex-recommended
 COPY . .
-RUN pdflatex -interaction=nonstopmode . cv.tex
+RUN pdflatex -interaction=nonstopmode cv.tex
 
 CMD ["bash"]
