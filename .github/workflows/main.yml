@@ -24,6 +24,7 @@ jobs:
           runs-on: ubuntu-latest
 
   commit:
+    needs: docker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
