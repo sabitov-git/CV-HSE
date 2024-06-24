@@ -1,28 +1,32 @@
-name: cv_create
+name: Build CV PDF
 
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
-  build:
+  build-pdf:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t cv-builder .
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
 
-      - name: Run Docker container
-        run: docker run --name cv_container -v ${{ github.workspace }}/output:/output cv-builder
+    - name: Build Docker image
+      run: docker build -t cv-builder .
 
-      - name: List output directory
-        run: ls ${{ github.workspace }}/output
+    - name: Run Docker container and generate PDF
+      run: docker run --rm -v ${{ github.workspace }}/output:/output cv-builder
 
-      - name: Commit and push
-        run: |
-          git add .
-          git commit -m "Add changes" -a
-          git push
+    - name: Upload PDF to the repository
+      run: |
+        cd output
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add cv.pdf
+        git commit -m "Add generated CV PDF"
+        git push
