@@ -20,7 +20,7 @@ jobs:
       run: docker build -t cv-builder .
 
     - name: Run Docker container and generate PDF
-      run: docker run --rm -v ${{ github.workspace }}/output:/output cv-builder
+      run: docker run --rm -v ${{ github.workspace }}/output:/workspace/output cv-builder
 
     - name: Upload PDF to the repository
       run: |
