@@ -1,23 +1,24 @@
 name: Build and Deploy CV
 
-
 on:
   push:
     branches:
       - 'main'
+
 jobs:
   docker:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
-      - name: 'check'
+      - name: 'Checkout repository'
         uses: actions/checkout@v2
-      - name: 'buildpdf'
+      - name: 'Build PDF'
         run: |
           sudo docker build --tag my_container -f Dockerfile .
           sudo docker run --name=latex my_container
-          sudo docker start latex
-          sudo docker cp latex:./cv.pdf cv.pdf
-      - name: 'check'
+          sudo docker cp latex:/app/cv.pdf cv.pdf 
+      - name: 'List files in container'
+        run: sudo docker exec latex ls -la /app  # проверка файлов в контейнере
+      - name: 'Upload PDF'
         uses: actions/upload-artifact@v2
         with:
           name: resume
