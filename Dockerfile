@@ -1,14 +1,21 @@
 FROM debian:10.8
 
-COPY . .
+RUN apt-get update && \
+    apt-get install -y \
+        texlive-latex-base \
+        texlive-latex-extra \
+        texlive-full \
+        texlive-latex-recommended && \
+    apt-get clean
 
-RUN apt update -y && \
- apt install -y \
- texlive-latex-base \
- texlive-latex-extra \
- texlive-full \
- texlive-latex-recommended
+COPY . /workspace
 
-RUN mkdir /output && pdflatex -interaction=nonstopmode -output-directory /output cv.tex
+WORKDIR /workspace
+
+RUN mkdir /workspace/output
+
+RUN pdflatex -interaction=nonstopmode -output-directory /workspace/output cv.tex
+
+WORKDIR /workspace/output
 
 CMD ["bash"]
