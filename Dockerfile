@@ -1,7 +1,5 @@
 FROM debian:10.8
 
-COPY . .
-
 RUN apt-get update -y && \
     apt-get install -y \
     texlive-latex-base \
@@ -9,6 +7,6 @@ RUN apt-get update -y && \
     texlive-full \
     texlive-latex-recommended
 
-RUN mkdir /output && pdflatex -interaction=nonstopmode -output-directory /output cv.tex
+RUN pdflatex -interaction=nonstopmode -output-directory . cv.tex
 
 CMD ["bash"]
