@@ -1,23 +1,24 @@
 name: Build and Deploy CV
 
+
 on:
   push:
     branches:
       - 'main'
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: debian:10.8
     steps:
-      - name: 'Checkout'
+      - name: 'check'
         uses: actions/checkout@v2
-      - name: 'Build PDF'
+      - name: 'buildpdf'
         run: |
-          docker build --tag my_container .
-          docker run --name latex my_container
-          docker cp latex:./cv.pdf cv.pdf
-      - name: 'Upload Artifact'
+          sudo docker build --tag my_container -f Dockerfile .
+          sudo docker run --name=latex my_container
+          sudo docker start latex
+          sudo docker cp latex:./cv.pdf cv.pdf
+      - name: 'check'
         uses: actions/upload-artifact@v2
         with:
-          name: cv
-          path: cv.pdf
-
+          name: resume
+          path: ./cv.pdf
