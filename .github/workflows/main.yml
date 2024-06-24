@@ -12,8 +12,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Build Docker image
+        run: docker build -t cv-builder .
 
-      - name: build
-        run: docker buildx build .
+      - name: Run Docker container
+        run: docker run --name cv_container -v ${{ github.workspace }}/output:/output cv-builder
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cv
+          path: output/
