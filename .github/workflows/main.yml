@@ -18,7 +18,11 @@ jobs:
       - name: Run Docker container
         run: docker run --name cv_container -v ${{ github.workspace }}/output:/output cv-builder
 
+      - name: List output directory
+        run: ls ${{ github.workspace }}/output
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
+          name: cv
           path: output/
