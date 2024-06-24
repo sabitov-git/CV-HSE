@@ -1,0 +1,220 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% modern themes
+\moderncvstyle{banking}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                                % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{fontspec}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+% if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\usepackage{multicol}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+\usepackage{import}
+
+% personal data
+\name{Timur}{Sabitov}
+% \title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+\address{Moscow, Russia }{}{}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+% \phone[mobile]{909-839-3097}                   % optional, remove / comment the line if not wanted
+% \phone[fixed]{01234 123456}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+% \email{xpan1@swarthmore.edu}                               % optional, remove / comment the line if not wanted
+% \homepage{shawnpan.me}                         % optional, remove / comment the line if not wanted
+% \extrainfo{}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+
+\newcommand*{\customcventry}[7][.25em]{
+  \begin{tabular}{@{}l}
+    {\bfseries #4}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\bfseries #5}
+  \end{tabular} \\
+  \begin{tabular}{@{}l}
+    {\itshape #3}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #2}
+  \end{tabular}
+  \ifx&#7&%
+  \else{\\%
+    \begin{minipage}{\maincolumnwidth}%
+      \small#7%
+    \end{minipage}}\fi%
+  \par\addvspace{#1}}
+
+\newcommand*{\customcvproject}[4][.25em]{
+%   \vfill\noindent
+  \begin{tabular}{@{}l}
+    {\bfseries #2}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #3}
+  \end{tabular}
+  \ifx&#4&%
+  \else{\\%
+    \begin{minipage}{\maincolumnwidth}%
+      \small#4%
+    \end{minipage}}\fi%
+  \par\addvspace{#1}}
+
+\setlength{\tabcolsep}{12pt}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\vspace*{-23mm}
+
+\begin{center}
+\begin{tabular}{ c c c c }
+ \faGithub\enspace \href{https://github.com/sabitov-git}{\textcolor{blue}{https://github.com/sabitov-git}} & \faEnvelopeO\enspace sabitovtimur17@gmail.com  & \faMobile\enspace +7(963)971-22-11\\
+\end{tabular}
+\end{center}
+
+\section{EDUCATION}
+{\customcventry{2022-2026}{Bachelor's degree at Faculty Computing and Data Science}{Higher School of Economics}{Moscow, Russia}{}{} {}
+
+
+\section{TECHNICAL SKILLS}
+
+{\customcvproject{Programming Languages}{}
+{\begin{itemize}
+  \item C++, Python (Numpy, Pandas, Matplotlib, sklearn), Pascal, SQL, 1C analytics
+\end{itemize}
+}
+
+{\customcvproject{Software $\textbf{\&}$ Tools}{}
+{\begin{itemize}
+  \item  Git, PyCharm, Excel, Clion, RStudio
+\end{itemize}
+}
+
+{\customcvproject{Courses}{}
+{\begin{itemize}
+  \item Machine Learning by Stanford, Data Science in client and text analytics, Machine learning and applied
+statistics at Tinkoff
+\end{itemize}
+}
+\section{EXPERIENCE}
+
+{\customcvproject{Internship in "Tinkoff"}{April 2022 - July 2022}
+  {\begin{itemize}
+    \item Data Analyst in B2B CRM team
+  \end{itemize}
+  }
+}
+{\customcvproject{"Yandex"}{ July 2022 - p.t.}
+  {\begin{itemize}
+    \item Middle Data Analyst Developer
+  \end{itemize}
+  }
+}
+\section{PROJECTS}
+
+{\customcvproject{Image processing and compression}{September 2021}
+  {\begin{itemize}
+    \item By using libraries: Pandas, NumPy, Matplotlib, Sklearn, Seaborn, cv2
+    \item Increased contrast by using matrix convolution
+    \item Compressed the image using by singular value decomposition
+    \item Compressed and visualized the data using SVD
+    \item \href{https://github.com/sabitov-git/SVD}{\textcolor{blue}{https://github.com/sabitov-git/-SVD}}
+  \end{itemize}
+  }
+}
+
+{\customcvproject{ML}{May 2021}
+  {\begin{itemize}
+    \item Used datasets:
+    \item Built a model that predicts apartment prices using linear regression
+    \item Used regularization to improve the accuracy of the model and stabilize it
+    \item Complicated the model by adding new features, and thereby reducing the mean square error
+    \item Drew graphs using matplotlib
+    \item Example of work: \href{https://github.com/sabitov-git/-ML}{\textcolor{blue}{https://github.com/sabitov-git/-ML}}
+  \end{itemize}
+  }
+}
+
+{\customcvproject{Dashboard}{June, 2021}
+{\begin{itemize}
+  \item Analyzed the data using pandas
+  \item Visualized the data
+  \item Made a convenient interface for viewing data
+  \item Drew graphs using matplotlib
+  \item \href{https://github.com/sabitov-git/dashboard-1c-about-covid}{\textcolor{blue}{https://github.com/sabitov-git/dashboard-1c-about-covid}}
+\end{itemize}
+}
+
+}
+\section{ACHIEVEMENTS}
+\begin{minipage}{\maincolumnwidth}%
+	\small{
+    	\begin{itemize}
+    	  \item The silver medal in the Rosatom math competition (more 20000 participant of the Olympiad)
+    	  \item The silver medal in the Izumrud math competition
+    	\end{itemize}}%
+\end{minipage}%
+
+}
+
+
+}
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+%-----       letter       ---------------------------------------------------------
+
+\end{document}
+
+
+%% end of file `template.tex'.
