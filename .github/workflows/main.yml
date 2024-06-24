@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: docker build -t .
+        run: docker buildx  build -t .
