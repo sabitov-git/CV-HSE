@@ -1,43 +1,25 @@
 name: Build and Deploy CV
 
+
 on:
   push:
     branches:
-      - main
-
+      - 'main'
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
+  docker:
+    runs-on: debian:10.8
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: 'check'
+        uses: actions/checkout@v2
+      - name: 'buildpdf'
+        run: |
+          sudo docker build --tag my_container -f Dockerfile .
+          sudo docker run --name=latex my_container
+          sudo docker start latex
+          sudo docker cp latex:./resume.pdf resume.pdf
+      - name: 'check'
+        uses: actions/upload-artifact@v2
+        with:
+          name: resume
+          path: ./resume.pdf
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Build Docker image
-      run: docker build -t cv-builder .
-
-    - name: Run Docker container and generate PDF
-      run: docker run --rm -v ${{ github.workspace }}/output:/output cv-builder
-
-    - name: Configure Git
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'actions@github.com'
-
-    - name: Clone target repository
-      uses: actions/checkout@v2
-      with:
-        repository: sabitov-git/cv_from_dz
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Copy generated PDF to target repo
-      run: cp output/cv.pdf cv.pdf
-
-    - name: Commit and push PDF file
-      run: |
-        git add cv.pdf
-        git commit -m "Update CV PDF"
-        git push origin main
