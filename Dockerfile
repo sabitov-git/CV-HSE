@@ -1,20 +1,14 @@
-name: cv_create
+FROM debian:10.8
 
-on:
-  push:
-    branches:
-      - "main"
+COPY . .
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+RUN apt update -y && \
+ apt install -y \
+ texlive-latex-base \
+ texlive-latex-extra \
+ texlive-full \
+ texlive-latex-recommended
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+RUN mkdir /output && pdflatex -interaction=nonstopmode -output-directory /output cv.tex
 
-      - name: build
-        run: docker buildx build .
-
+CMD ["bash"]
