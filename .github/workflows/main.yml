@@ -21,17 +21,8 @@ jobs:
         with:
           name: artifacts
           path: ./cv.pdf
-          
-  deploy:
-    needs: docker
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
-    - name: download 
-      uses: actions/download-artifact@v2
-      with:
-        name: cv
+      - name: 'deploy pages'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: artifacts
+      
