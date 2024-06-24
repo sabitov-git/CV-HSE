@@ -9,6 +9,7 @@ RUN apt update -y && \
  texlive-full \
  texlive-latex-recommended
 
-RUN mkdir /output && pdflatex -interaction=nonstopmode -output-directory /output cv.tex
 
-CMD ["bash"]
+RUN pdflatex -interaction=nonstopmode cv.tex
+
+CMD [ "bash" ]
