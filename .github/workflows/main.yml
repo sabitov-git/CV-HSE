@@ -47,6 +47,8 @@ jobs:
           git add cv.pdf
           git commit -m "Update CV PDF"
           git push
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
