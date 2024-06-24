@@ -1,4 +1,3 @@
-
 FROM debian:10.8
 
 COPY . .
