@@ -21,8 +21,15 @@ jobs:
         with:
           name: artifacts
           path: ./cv.pdf
-      - name: 'deploy pages'
-        uses: actions/deploy-pages@v4
+          runs-on: ubuntu-latest
+          
+      - name: checkout
+        uses: actions/checkout@v2
         with:
-          artifact_name: artifacts
+          fetch-depth: 0
+
+      - name: download 
+        uses: actions/download-artifact@v2
+        with:
+          name: cv
       
