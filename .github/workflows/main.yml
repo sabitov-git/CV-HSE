@@ -17,7 +17,7 @@ jobs:
           sudo docker run --name=latex my_container
           sudo docker cp latex:/app/cv.pdf cv.pdf 
       - name: 'List files in container'
-        run: sudo docker exec latex ls -la /app  # проверка файлов в контейнере
+        run: sudo docker exec latex ls -la /  # проверка файлов в контейнере
       - name: 'Upload PDF'
         uses: actions/upload-artifact@v2
         with:
