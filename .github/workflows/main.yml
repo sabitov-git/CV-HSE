@@ -15,7 +15,7 @@ jobs:
         run: |
           sudo docker build --tag my_container -f Dockerfile .
           sudo docker run --name=latex my_container
-          sudo docker cp latex:/app/cv.pdf cv.pdf 
+          sudo docker cp latex:/cv.pdf cv.pdf 
       - name: 'Upload PDF'
         uses: actions/upload-artifact@v2
         with:
