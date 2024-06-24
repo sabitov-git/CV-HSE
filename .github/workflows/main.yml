@@ -7,7 +7,7 @@ on:
       - 'main'
 jobs:
   docker:
-    runs-on: debian:10.8
+    runs-on: ubuntu-latest 
     steps:
       - name: 'check'
         uses: actions/checkout@v2
